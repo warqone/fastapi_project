@@ -79,6 +79,7 @@ async def _(message: types.Message, state: FSMContext):
     Обрабатывает ввод нового значения поля редактирования.
     Обновляет значение поля в словаре student и отправляет запрос к API.
     Сбрасывает FSMContext и выводит сообщение об успешном редактировании."""
+
     new_value = message.text
     data = await state.get_data()
     field = data.get('editing_student_field')
@@ -86,18 +87,21 @@ async def _(message: types.Message, state: FSMContext):
 
     student[field] = new_value
     student_id = student.pop('id')
+
     try:
         await api.edit_student(student_id, student)
         await message.answer(
             texts.succesfull_edit_msg.format(id=student_id),
             reply_markup=builders.main_menu_kb()
         )
+
     except Exception as e:
         logger.error(f'Ошибка при редактировании студента: {e}')
         await message.answer(
             texts.error_msg,
             reply_markup=builders.main_menu_kb()
         )
+
     await state.clear()
 
 
@@ -105,19 +109,23 @@ async def _(message: types.Message, state: FSMContext):
 async def _(call: types.CallbackQuery, state: FSMContext):
     """Удаление студента.
     Обрабатывает выбор кнопки удаления студента и отправляет запрос к API."""
+
     data = await state.get_data()
     student = data.get('selected_student')
     student_id = student.pop('id')
+
     try:
         await api.delete_student(student_id)
         await call.message.edit_text(
             texts.succesfull_delete_msg.format(id=student_id),
             reply_markup=builders.main_menu_kb()
         )
+
     except Exception as e:
         logger.error(f'Ошибка при удалении студента: {e}')
         await call.message.edit_text(
             texts.error_msg,
             reply_markup=builders.main_menu_kb()
         )
+
     await state.clear()

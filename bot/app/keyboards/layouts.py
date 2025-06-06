@@ -13,10 +13,10 @@ SHOW_STUDENTS_FILTERS_BUTTONS = (
     ('Максимальный средний балл', 'filter_maxgpa')
 )
 STUDENT_STATUS_BUTTONS = (
-    ('Активный', 'status_filter_ACTIVE'),
-    ('Отчислен', 'status_filter_EXPELLED'),
-    ('Академический отпуск', 'status_filter_ACADEMIC_LEAVE'),
-    ('Закончил', 'status_filter_GRADUATED')
+    ('Активный', 'status-filter_ACTIVE'),
+    ('Отчислен', 'status-filter_EXPELLED'),
+    ('Академический отпуск', 'status-filter_ACADEMIC_LEAVE'),
+    ('Закончил', 'status-filter_GRADUATED')
 )
 STUDENT_EDIT_BUTTONS = (
     ('✏️ Редактировать', 'patch_student'),
@@ -58,4 +58,10 @@ SELECT_GPA_TO_DELETE = (
     ('30', 'delete-gpa_30'),
     ('20', 'delete-gpa_20'),
     ('10', 'delete-gpa_10')
+)
+SELECT_STUDENT_STATUS_FILTER_BUTTONS = (
+    ('Активный', 'status-filter-ACTIVE'),
+    ('Отчислен', 'status-filter-EXPELLED'),
+    ('Академический отпуск', 'status-filter-ACADEMIC_LEAVE'),
+    ('Закончил', 'status-filter-GRADUATED')
 )

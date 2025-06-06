@@ -4,6 +4,7 @@ from app.keyboards import layouts
 
 
 def main_menu_kb():
+    """Клавиатура для главного меню."""
     kb = InlineKeyboardBuilder()
     for text, callback in layouts.MAIN_MENU_BUTTONS:
         kb.button(text=text, callback_data=callback)
@@ -12,6 +13,7 @@ def main_menu_kb():
 
 
 def show_students_kb():
+    """Клавиатура для выбора студента."""
     kb = InlineKeyboardBuilder()
     for text, callback in layouts.SHOW_STUDENTS_BUTTONS:
         kb.button(text=text, callback_data=callback)
@@ -20,6 +22,7 @@ def show_students_kb():
 
 
 def edit_student_kb(students):
+    """Клавиатура для редактирования студента."""
     kb = InlineKeyboardBuilder()
     for student in students:
         id = student['id']
@@ -33,6 +36,7 @@ def edit_student_kb(students):
 
 
 def show_students_filters_kb():
+    """Клавиатура для выбора фильтров."""
     kb = InlineKeyboardBuilder()
     for text, callback in layouts.SHOW_STUDENTS_FILTERS_BUTTONS:
         kb.button(text=text, callback_data=callback)
@@ -40,15 +44,8 @@ def show_students_filters_kb():
     return kb.as_markup()
 
 
-def student_status_kb():
-    kb = InlineKeyboardBuilder()
-    for text, callback in layouts.STUDENT_STATUS_BUTTONS:
-        kb.button(text=text, callback_data=callback)
-    kb.adjust(1)
-    return kb.as_markup()
-
-
 def student_edit_kb():
+    """Клавиатура для редактирования/удаления студента."""
     kb = InlineKeyboardBuilder()
     for text, callback in layouts.STUDENT_EDIT_BUTTONS:
         kb.button(text=text, callback_data=callback)
@@ -58,6 +55,8 @@ def student_edit_kb():
 
 
 def patch_student_kb():
+    """Клавиатура для редактирования студента.
+    Выводит поля редактирования."""
     kb = InlineKeyboardBuilder()
     for text, callback in layouts.PATCH_STUDENT_BUTTONS:
         kb.button(text=text, callback_data=callback)
@@ -67,6 +66,7 @@ def patch_student_kb():
 
 
 def select_student_status_kb():
+    """Клавиатура для выбора статуса студента."""
     kb = InlineKeyboardBuilder()
     for text, callback in layouts.SELECT_STUDENT_STATUS_BUTTONS:
         kb.button(text=text, callback_data=callback)
@@ -74,17 +74,10 @@ def select_student_status_kb():
     return kb.as_markup()
 
 
-def select_filter_to_delete_kb():
+def select_student_status_filter_kb():
+    """Клавиатура для выбора статуса студента."""
     kb = InlineKeyboardBuilder()
-    for text, callback in layouts.SELECT_FILTER_TO_DELETE_BUTTONS:
-        kb.button(text=text, callback_data=callback)
-    kb.adjust(1)
-    return kb.as_markup()
-
-
-def select_gpa_to_delete_kb():
-    kb = InlineKeyboardBuilder()
-    for text, callback in layouts.SELECT_GPA_TO_DELETE:
+    for text, callback in layouts.SELECT_STUDENT_STATUS_FILTER_BUTTONS:
         kb.button(text=text, callback_data=callback)
     kb.adjust(1)
     return kb.as_markup()
