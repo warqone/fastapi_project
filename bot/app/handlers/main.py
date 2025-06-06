@@ -1,5 +1,6 @@
 from aiogram import Router, F, types
 from aiogram.filters import Command
+from aiogram.fsm.context import FSMContext
 
 from app.keyboards.builders import main_menu_kb
 from app.texts.texts import main_menu_msg, hello_msg
@@ -8,8 +9,9 @@ main_router = Router()
 
 
 @main_router.message(Command(commands=['start']))
-async def start(message: types.Message):
+async def start(message: types.Message, state: FSMContext):
     """Обрабатывает ввод команды /start."""
+    await state.clear()
     await message.answer(
         hello_msg.format(name=message.from_user.first_name),
         reply_markup=main_menu_kb()
